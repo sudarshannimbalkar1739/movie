@@ -9,47 +9,104 @@
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <title>movie flix</title>
+    <title>movieflix</title>
 </head>
 
 <body>
-    <div class="navbar">
-        <div class="navbar-container">
-            <div class="logo-container">
-                <h1 class="logo">movie flix</h1>
-            </div>
-            <div class="menu-container">
-                <ul class="menu-list">
-                    <li class="menu-list-item active">Home</li>
-                    <li class="menu-list-item">Movies</li>
-                    <li class="menu-list-item">Series</li>
-                    <li class="menu-list-item">Popular</li>
-                    <li class="menu-list-item">login</li>
+    <header>
+        <div class="navbar">
+            <div class="navbar-container">
+                <div class="logo-container">
+                    <h1 class="logo">movieflix</h1>
+                </div>
+                <div class="menu-container">
+                    <ul class="menu-list">
+                        <li class="menu-list-item active">Home</li>
+                        <li class="menu-list-item">Movies</li>
+                        <li class="menu-list-item">Series</li>
+                        <li class="menu-list-item">Popular</li>
+                        <div class="profile-container">
+                            <div class="toggle">
+                                <i class="fas fa-moon toggle-icon"></i>
+                                <i class="fas fa-sun toggle-icon"></i>
+                                <div class="toggle-ball"></div>
+                            </div>
+                        </div>
 
-                </ul>
-            </div>
-            <div class="profile-container">
-                <img class="profile-picture" src="img/profile.jpg" alt="">
-                <div class="profile-text-container">
-                    <span class="profile-text">Profile</span>
-                    <i class="fas fa-caret-down"></i>
+                        <?php if (isset($_SESSION['username'])): ?>
+                            <div class="avatar">
+                                <?php $n = strtoupper($_SESSION['username'][0]);
+                                echo $n;
+                                echo "<script>showUserAvatar($n);</script>"; ?>
+                            </div>
+                            <form action="logout.php" method="post">
+                                <button type="submit" class="logoutbtn">Logout</button>
+                            </form>
+                            <!-- <a class="logoutbtn" href="logout.php">Logout</a> -->
+                        <?php else: ?>
+                            <button name="login" id="loginBtn" onclick="showLogin()">Login</button>
+                        <?php endif; ?>
+                        </nav>
                 </div>
-                <div class="toggle">
-                    <i class="fas fa-moon toggle-icon"></i>
-                    <i class="fas fa-sun toggle-icon"></i>
-                    <div class="toggle-ball"></div>
+    </header>
+
+    <!-- hero section -->
+
+    <div id="overlay" class="overlay hidden">
+        <div class="auth-container">
+            <span class="close-btn" onclick="closeAuth()">×</span>
+            <form action="login.php" method="post">
+                <!-- LOGIN -->
+                <div id="loginBox">
+                    <h2>Login</h2>
+                    <input type="email" name="email" placeholder="Enter Email" required>
+                    <input type="password" name="password" placeholder="Enter password" required>
+                    <button type="submit" name="login">Login</button>
+                    <p>Don't have an account?
+                        <span class="link" onclick="showRegister()">Register</span>
+                    </p>
+                    <p>Admin Login.
+                        <span class="link" onclick="showadmin()">Admin</span>
+                    </p>
                 </div>
-            </div>
+            </form>
+
+            <!-- admin -->
+            <form action="auth.php" method="post">
+                <div id="adminBox" class="hidden">
+                    <h2>Admin</h2>
+                    <input type="email" name="ademail" placeholder="Enter Email" required>
+                    <input type="password" name="adpassword" placeholder="Enter password" required>
+                    <button type="submit" name="adlogin">authenticate</button>
+                    <p>show Login:
+                        <span class="link" onclick="showLogin()">Login</span>
+                    </p>
+                </div>
+            </form>
+            <!-- REGISTER -->
+            <form action="register.php" method="post">
+                <div id="registerBox" class="hidden">
+                    <h2>Register</h2>
+                    <input type="text" name="username" placeholder="Enter name" id="name" required>
+                    <input type="tel" name="phone" id="phone" placeholder="Enter Mobile no." pattern="[0-9]{10}"
+                        required>
+                    <input type="text" name="address" id="address" placeholder="State, District, Village - Pincode"
+                        required />
+                    <input type="email" name="email" id="email" placeholder="Enter email" required />
+                    <input type="password" name="registerPassword" id="registerPassword" placeholder="Password"
+                        required />
+                    <input type="password" name="reenterregisterPassword" id="reenterregisterPassword"
+                        placeholder="Re enter Password" required />
+                    <button name="register">Register</button>
+                    <p>Already have an account?
+                        <span class="link" onclick="showLogin()">Login</span>
+                    </p>
+                </div>
+            </form>
         </div>
+        </ul>
     </div>
-    <div class="sidebar">
-        <i class="left-menu-icon fas fa-search"></i>
-        <i class="left-menu-icon fas fa-home"></i>
-        <i class="left-menu-icon fas fa-users"></i>
-        <i class="left-menu-icon fas fa-bookmark"></i>
-        <i class="left-menu-icon fas fa-tv"></i>
-        <i class="left-menu-icon fas fa-hourglass-start"></i>
-        <i class="left-menu-icon fas fa-shopping-cart"></i>
+    </div>
     </div>
     <div class="container">
         <div class="content-container">
@@ -299,7 +356,8 @@
             </div>
         </div>
     </div>
-    <script src="app.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/logreg.js"></script>
 </body>
 
 </html>
