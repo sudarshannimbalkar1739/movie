@@ -7,7 +7,7 @@ ini_set('display_errors', 1);
 $host = "localhost";
 $user = "root";
 $pass = "";
-$dbname = "food_ordering";
+$dbname = "movies";
 
 $conn = mysqli_connect($host, $user, $pass);
 

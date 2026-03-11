@@ -15,14 +15,7 @@
   --btn-hover: rgba(255, 255, 255, 0.2);
   --active-btn: #ffffff;
   --active-text: #000000;
-}
 
-
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: var(--primary-bg);
-  color: var(--text-white);
-  overflow-x: hidden;
 }
 
 header {
@@ -95,6 +88,8 @@ header.scrolled {
 }
 
 .menu-container {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   flex: 6;
 }

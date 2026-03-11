@@ -16,23 +16,17 @@
     <header>
         <div class="navbar">
             <div class="navbar-container">
-                <div class="logo-container">
-                    <h1 class="logo">movieflix</h1>
-                </div>
                 <div class="menu-container">
+                    <div class="logo-container">
+                        <h1 class="logo">movieflix</h1>
+                    </div>
                     <ul class="menu-list">
                         <li class="menu-list-item active">Home</li>
                         <li class="menu-list-item">Movies</li>
                         <li class="menu-list-item">Series</li>
                         <li class="menu-list-item">Popular</li>
-                        <div class="profile-container">
-                            <div class="toggle">
-                                <i class="fas fa-moon toggle-icon"></i>
-                                <i class="fas fa-sun toggle-icon"></i>
-                                <div class="toggle-ball"></div>
-                            </div>
-                        </div>
-
+                    </ul>
+                    <div class="loginbtn">
                         <?php if (isset($_SESSION['username'])): ?>
                             <div class="avatar">
                                 <?php $n = strtoupper($_SESSION['username'][0]);
@@ -46,7 +40,9 @@
                         <?php else: ?>
                             <button name="login" id="loginBtn" onclick="showLogin()">Login</button>
                         <?php endif; ?>
-                        </nav>
+                    </div>
+
+                    </nav>
                 </div>
     </header>
 
